@@ -70,7 +70,7 @@ class Main extends Phaser.State {
         this.gameObjects.map = new Map(this.add.tilemap('desert'));
 
         //Create hero
-        this.gameObjects.hero = new Hero(this.add.sprite(160,160, 'hero'));
+        this.gameObjects.hero = new Hero(this.add.sprite(60,60, 'hero'));
         //Enable physics for hero
         this.physics.enable(this.gameObjects.hero.sprite);
         this.gameObjects.hero.sprite.body.collideWorldBounds = true;
@@ -104,7 +104,7 @@ class Main extends Phaser.State {
 
 class Game extends Phaser.Game {
     constructor() {
-        super(800, 600, Phaser.AUTO, '');
+        super(1280, 1024, Phaser.AUTO, '');
         this.state.add('Main', Main)
         this.state.start('Main')
     }
