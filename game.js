@@ -41,8 +41,8 @@ class Hero {
 class Map {
     constructor(map) {
         this.map = map;
-        this.map.addTilesetImage('tileset2', 'tiles');
-        this.map.setCollision(1);
+        this.map.addTilesetImage('maptiles', 'tiles');
+        this.map.setCollision([1,3]);
         this.map.activeTile = undefined;
     
         //map.setTileIndexCallback(4, hitCoin, this);
@@ -55,9 +55,9 @@ class Map {
 
 class Main extends Phaser.State {
     preload()  {
-        this.load.tilemap('desert', 'untitled2.json', null, Phaser.Tilemap.TILED_JSON)
-        this.load.image('tiles', 'tileset2.png')
-        this.load.image('hero', 'hero.png')
+        this.load.tilemap('desert', 'map.json', null, Phaser.Tilemap.TILED_JSON)
+        this.load.image('tiles', 'maptiles.png')
+        this.load.image('hero', 'Hero.png')
 
         this.gameObjects = {}
     }
