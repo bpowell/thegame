@@ -50,6 +50,9 @@ class Map {
         this.ground = this.map.createLayer('Tile Layer 1');
         this.ground.debug = true;
         this.ground.resizeWorld();
+
+        this.resources = this.map.createLayer('resources');
+        this.resources.map.putTile(1, 1, 1);
     }
 }
 
