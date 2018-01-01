@@ -1,5 +1,18 @@
-let tileNames = { "TREE":5, "BRICKS":4 }
-let tileRemaps = { "TREE":"BRICKS" }
+let tileNames = {
+    "EMPTY" : 0,
+    "WATER" : 1,
+    "GRASS" : 2,
+    "STONEWALL" : 3,
+    "ROCK" : 4,
+    "DIRT" : 5,
+    "STONEFLOOR" : 6,
+    "TALLGRASS" : 7,
+    "FLOOR" : 8,
+    "SAND" : 9,
+    "TINVIEN" : 10,
+    "COPPERVIEN" : 11,
+    "FISHING" : 12
+}
 
 class Hero {
     constructor(sprite) {
@@ -48,11 +61,11 @@ class Map {
         //map.setTileIndexCallback(4, hitCoin, this);
 
         this.ground = this.map.createLayer('Tile Layer 1');
-        this.ground.debug = true;
+        //this.ground.debug = true;
         this.ground.resizeWorld();
 
         this.resources = this.map.createLayer('resources');
-        this.resources.map.putTile(1, 1, 1);
+        this.resources.map.putTile(11, 1, 1, this.resources);
     }
 }
 
@@ -93,12 +106,12 @@ class Main extends Phaser.State {
         if(this.input.activePointer.leftButton.isDown) {
             let mx = this.input.worldX
             let my = this.input.worldY
-            this.gameObjects.map.activeTile = this.gameObjects.map.map.getTileWorldXY(mx, my)
+            this.gameObjects.map.activeTile = this.gameObjects.map.map.getTileWorldXY(mx, my, 64, 64, this.gameObjects.map.resources)
         }
 
         if(!this.gameObjects.hero.isMoving && this.gameObjects.map.activeTile) {
-            if(this.gameObjects.map.activeTile.index === tileNames["TREE"]) {
-                this.gameObjects.map.map.replace(tileNames["TREE"], tileNames[tileRemaps["TREE"]], this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, 1, 1);
+            if(this.gameObjects.map.activeTile.index === tileNames["COPPERVIEN"]) {
+                this.gameObjects.map.map.removeTile(this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
             }
             this.gameObjects.map.activeTile = undefined;
         }
