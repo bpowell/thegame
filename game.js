@@ -65,7 +65,7 @@ class Map {
         this.ground.resizeWorld();
 
         this.resources = this.map.createLayer('resources');
-        this.resources.map.putTile(11, 1, 1, this.resources);
+        this.map.putTile(11, 1, 1, this.resources);
     }
 }
 
