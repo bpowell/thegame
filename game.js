@@ -111,7 +111,7 @@ class Main extends Phaser.State {
 
         if(!this.gameObjects.hero.isMoving && this.gameObjects.map.activeTile) {
             if(this.gameObjects.map.activeTile.index === tileNames["COPPERVIEN"]) {
-                this.gameObjects.map.map.removeTile(this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
+                this.gameObjects.map.map.putTile(13, this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
             }
             this.gameObjects.map.activeTile = undefined;
         }
