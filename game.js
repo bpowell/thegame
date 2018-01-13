@@ -40,13 +40,13 @@ class Hero {
         if(this.sprite.x > this.mx + 50) {
             this.sprite.body.velocity.x = -100;
         } else if(this.sprite.x < this.mx - 50) {
-            this.sprite.body.velocity.x = 100;
+            this.sprite.body.velocity.x = 200;
         }
 
         if(this.sprite.y > this.my +50) {
             this.sprite.body.velocity.y = -100;
         } else if(this.sprite.y < this.my -50){
-            this.sprite.body.velocity.y = 100;
+            this.sprite.body.velocity.y = 200;
         }
     }
 }
