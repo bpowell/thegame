@@ -110,9 +110,13 @@ class Main extends Phaser.State {
         }
 
         if(!this.gameObjects.hero.isMoving && this.gameObjects.map.activeTile) {
-            if(this.gameObjects.map.activeTile.index === tileNames["COPPERVIEN"]) {
-                this.gameObjects.map.map.putTile(13, this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
+            switch(this.gameObjects.map.activeTile.index) {
+                case tileNames["COPPERVIEN"]:
+                case tileNames["TINVIEN"]:
+                    this.gameObjects.map.map.putTile(13, this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
+                    break;
             }
+
             this.gameObjects.map.activeTile = undefined;
         }
     }
