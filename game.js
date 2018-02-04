@@ -1,4 +1,4 @@
-let tileNames = {
+const tileNames = {
     "EMPTY" : 0,
     "WATER" : 1,
     "GRASS" : 2,
