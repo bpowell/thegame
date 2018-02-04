@@ -15,6 +15,8 @@ const tileNames = {
     "EMPTYVIEN": 13
 }
 
+const ORE_RESPAWN_RATE = 5000;
+
 class Hero {
     constructor(sprite) {
         this.sprite = sprite
@@ -69,8 +71,8 @@ class Map {
         this.map.putTile(11, 1, 1, this.resources);
     }
 
-    replaceResource(tile) {
-        this.map.putTile(tile, this.activeTile.x, this.activeTile.y, this.resources)
+    replaceResource(tile, x, y) {
+        this.map.putTile(tile, (x === undefined) ? this.activeTile.x : x, (y === undefined) ? this.activeTile.y : y, this.resources)
     }
 }
 
@@ -115,10 +117,18 @@ class Main extends Phaser.State {
         }
 
         if(!this.gameObjects.hero.isMoving && this.gameObjects.map.activeTile) {
+            let that = this;
+            const at = Object.assign({}, this.gameObjects.map.activeTile);
+
             switch(this.gameObjects.map.activeTile.index) {
                 case tileNames["COPPERVIEN"]:
                 case tileNames["TINVIEN"]:
+                    //mining
                     this.gameObjects.map.replaceResource(tileNames["EMPTYVIEN"])
+
+                    setTimeout(function() {
+                        that.gameObjects.map.replaceResource(at.index, at.x, at.y)
+                    }, ORE_RESPAWN_RATE)
                     break;
             }
 
