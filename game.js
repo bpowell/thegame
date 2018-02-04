@@ -11,7 +11,8 @@ let tileNames = {
     "SAND" : 9,
     "TINVIEN" : 10,
     "COPPERVIEN" : 11,
-    "FISHING" : 12
+    "FISHING" : 12,
+    "EMPTYVIEN": 13
 }
 
 class Hero {
@@ -67,6 +68,10 @@ class Map {
         this.resources = this.map.createLayer('resources');
         this.map.putTile(11, 1, 1, this.resources);
     }
+
+    replaceResource(tile) {
+        this.map.putTile(tile, this.activeTile.x, this.activeTile.y, this.resources)
+    }
 }
 
 class Main extends Phaser.State {
@@ -113,7 +118,7 @@ class Main extends Phaser.State {
             switch(this.gameObjects.map.activeTile.index) {
                 case tileNames["COPPERVIEN"]:
                 case tileNames["TINVIEN"]:
-                    this.gameObjects.map.map.putTile(13, this.gameObjects.map.activeTile.x, this.gameObjects.map.activeTile.y, this.gameObjects.map.resources);
+                    this.gameObjects.map.replaceResource(tileNames["EMPTYVIEN"])
                     break;
             }
 
