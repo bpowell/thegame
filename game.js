@@ -16,6 +16,9 @@ const tileNames = {
 }
 
 const ORE_RESPAWN_RATE = 5000;
+const MAX_INVENTORY_SIZE = 30;
+
+let inventory = {}
 
 class Hero {
     constructor(sprite) {
@@ -24,6 +27,23 @@ class Hero {
         this.isMoving = false
         this.mx = this.sprite.x
         this.my = this.sprite.y
+
+        this.inventory = {}
+        inventory = this.inventory
+    }
+
+    add_item_to_inventory(item, count) {
+        if(this.inventory[item] !== undefined) {
+            this.inventory[item] += count
+            return
+        }
+
+        if(Object.keys(this.inventory).length >= MAX_INVENTORY_SIZE) {
+            //No more room in inventory
+            return
+        }
+
+        this.inventory[item] = count
     }
 
     update(game) {
@@ -129,6 +149,8 @@ class Main extends Phaser.State {
                     setTimeout(function() {
                         that.gameObjects.map.replaceResource(at.index, at.x, at.y)
                     }, ORE_RESPAWN_RATE)
+
+                    this.gameObjects.hero.add_item_to_inventory(at.index, 1)
                     break;
             }
 
